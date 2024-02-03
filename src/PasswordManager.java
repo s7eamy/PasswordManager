@@ -45,7 +45,7 @@ public class PasswordManager {
      */
     private static void deletePassword(String name) {
         try {
-            Scanner scanner = new Scanner(Paths.get("PasswordManager/passwords.csv"));
+            Scanner scanner = new Scanner(Paths.get("passwords.csv"));
             String fileContent = "";
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
@@ -55,7 +55,7 @@ public class PasswordManager {
                 }
             }
             scanner.close();
-            FileWriter writer = new FileWriter("PasswordManager/passwords.csv");
+            FileWriter writer = new FileWriter("passwords.csv");
             writer.write(fileContent);
             writer.close();
         } catch (IOException e) {
@@ -71,7 +71,7 @@ public class PasswordManager {
         }
         String encryptedPassword = encrypterDecrypter.encrypt(password);
         try {
-            FileWriter writer = new FileWriter("PasswordManager/passwords.csv", true);
+            FileWriter writer = new FileWriter("passwords.csv", true);
             writer.write(name + ";" + encryptedPassword + "\n");
             writer.close();
         } catch (IOException e) {
@@ -84,7 +84,7 @@ public class PasswordManager {
         Scanner scanner;
         String encryptedPassword = "";
         try {
-            scanner = new Scanner(Paths.get("PasswordManager/passwords.csv"));
+            scanner = new Scanner(Paths.get("passwords.csv"));
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 String[] parts = line.split(";");
